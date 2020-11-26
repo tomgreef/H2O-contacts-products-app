@@ -17,7 +17,8 @@
 5. Gestor de stock
 6. Creador de ruta (opcional)
 7. Login*
-8. Lista de Productos*
-9. Lista de pedidos
+8. Perfil del usuario
+9. Lista de Productos*
+10. Lista de pedidos
 
 *Principales
