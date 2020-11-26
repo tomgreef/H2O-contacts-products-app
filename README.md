@@ -10,15 +10,16 @@
 - Una adecuada abstracción, diseño y eficiencia
 
 ## Actividades:
-1. Inicio con menu de diferentes actividades
-2. Consulta de estadisticas*
-3. Lista de clientes*
-4. Gestion de pedidos
-5. Gestor de stock
+0. BBDD -> ALAE
+1. Inicio con menu de diferentes actividades -> MÁS TARDE
+2. Consulta de estadisticas* -> MÁS TARDE
+3. Lista de clientes* -> ALAE
+4. Gestion de pedidos -> MÁS TARDE
+5. Gestor de stock -> MÁS TARDE
 6. Creador de ruta (opcional)
-7. Login*
-8. Perfil del usuario
-9. Lista de Productos*
-10. Lista de pedidos
+7. Login* -> LORENZO 
+8. Perfil del usuario -> LORENZO
+9. Lista de Productos* -> TOM
+10. Lista de Pedidos -> TOM
 
 *Principales
