@@ -11,6 +11,7 @@
 
 ## Actividades:
 0. BBDD -> ALAE
-1. Lista de clientes* -> ALAE
-2. Lista de Productos* -> TOM
-3. Lista de Pedidos -> Lorenzo
+1. Lista de Clientes -> Tom
+2. Lista de Productos -> Tom
+3. Lista de Pedidos -> Tom
+4. Añadir Cliente -> Lorenzo
