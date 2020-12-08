@@ -1,5 +1,8 @@
 package com.example.app.ui.main;
 
+import android.app.Activity;
+import android.content.Intent;
+
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
