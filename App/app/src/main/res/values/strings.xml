@@ -4,4 +4,11 @@
     <string name="tab_text_2">Products</string>
     <string name="tab_text_3">Orders</string>
     <string name="fab_content_desc">Adding new item</string>
+    <string name="full_name">Full name</string>
+    <string name="telefone">Telefone</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="cancelClient">Cancel new client</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
