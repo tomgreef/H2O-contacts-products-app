@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Gestión</string>
+    <string name="tab_text_1">Clientes</string>
+    <string name="tab_text_2">Productos</string>
+    <string name="tab_text_3">Pedidos</string>
+    <string name="fab_content_desc">Añadir un artículo</string>
+    <string name="full_name">Nombre completo</string>
+    <string name="telefone">Teléfono</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="cancelClient">Cancelar nuevo cliente</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Eliminar</string>
+</resources>
