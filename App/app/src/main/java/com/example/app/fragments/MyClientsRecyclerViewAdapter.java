@@ -2,11 +2,15 @@ package com.example.app.fragments;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.app.MainActivity;
 import com.example.app.R;
 import com.example.app.fragments.dummy.DummyContent.DummyItem;
 
@@ -19,9 +23,11 @@ import java.util.List;
 public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClientsRecyclerViewAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
+    private OnClientListenser mOnClientListener;
 
-    public MyClientsRecyclerViewAdapter(List<DummyItem> items) {
+    public MyClientsRecyclerViewAdapter(List<DummyItem> items, OnClientListenser onClientListenser) {
         mValues = items;
+        this.mOnClientListener = onClientListenser;
     }
 
     @Override
@@ -29,7 +35,8 @@ public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClients
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_clients, parent, false);
 
-        return new ViewHolder(view);
+
+        return new ViewHolder(view, mOnClientListener);
     }
 
     @Override
@@ -44,22 +51,37 @@ public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClients
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
         public DummyItem mItem;
 
-        public ViewHolder(View view) {
+        OnClientListenser onClientListener;
+
+        public ViewHolder(View view, OnClientListenser onClientListener) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
             mContentView = (TextView) view.findViewById(R.id.content);
+
+            this.onClientListener = onClientListener;
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
         }
+
+        // Implementation of interface
+        @Override
+        public void onClick(View v) {
+            onClientListener.onClientClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnClientListenser{
+        public void onClientClick(int position);
     }
 }

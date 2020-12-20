@@ -17,13 +17,16 @@ public class UpdateClient extends AppCompatActivity {
 
         Button cancel = findViewById(R.id.cancel);
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(UpdateClient.this, "Cancel New Client", Toast.LENGTH_LONG).show();
-                cancelar(view);
-            }
-        });
+        if(cancel != null){
+            cancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(UpdateClient.this, "Cancel New Client", Toast.LENGTH_LONG).show();
+                    cancelar(view);
+                }
+            });
+        }
+
     }
 
     public void cancelar(android.view.View v) {

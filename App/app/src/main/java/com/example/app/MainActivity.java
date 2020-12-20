@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 addClient(view);
             }
         });
-
-
     }
 
     public void addClient(android.view.View v) {

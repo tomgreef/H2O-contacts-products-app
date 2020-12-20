@@ -18,17 +18,24 @@ import android.widget.Toast;
 import com.example.app.AddClient;
 import com.example.app.MainActivity;
 import com.example.app.R;
+import com.example.app.UpdateClient;
 import com.example.app.fragments.dummy.DummyContent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
  */
-public class ClientsFragment extends Fragment {
+public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAdapter.OnClientListenser {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+
+    // Vars
+    private List<DummyContent.DummyItem> mValues = new ArrayList<>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -60,18 +67,6 @@ public class ClientsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_client_list, container, false);
-        Button update = view.findViewById(R.id.update);
-
-        if(update != null){
-            update.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getActivity(), "Adding Client", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -82,8 +77,16 @@ public class ClientsFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyClientsRecyclerViewAdapter(DummyContent.ITEMS));
+            recyclerView.setAdapter(new MyClientsRecyclerViewAdapter(DummyContent.ITEMS, this));
         }
         return view;
+    }
+
+    @Override
+    public void onClientClick(int position) {
+        Toast.makeText(getActivity(), "Editing Client", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getActivity(), UpdateClient.class);
+        // intent.putExtra("Some info", "something else");
+        startActivity(intent);
     }
 }
