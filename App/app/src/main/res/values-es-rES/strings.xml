@@ -1,9 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Gestión</string>
+    <string name="app_name">H2O Managment</string>
     <string name="tab_text_1">Clientes</string>
     <string name="tab_text_2">Productos</string>
     <string name="tab_text_3">Pedidos</string>
-    <string name="fab_content_desc">Añadir un artículo</string>
     <string name="full_name">Nombre completo</string>
     <string name="telefone">Teléfono</string>
     <string name="save">Guardar</string>
@@ -11,4 +11,6 @@
     <string name="cancelClient">Cancelar nuevo cliente</string>
     <string name="edit">Editar</string>
     <string name="delete">Eliminar</string>
+    <string name="language_selected">es</string>
+    <string name="language">Español</string>
 </resources>

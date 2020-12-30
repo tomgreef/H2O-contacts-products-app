@@ -6,16 +6,40 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class AddClient extends AppCompatActivity {
+
+    private AdminDB_Manager db = new AdminDB_Manager(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_client);
         Button cancel = findViewById(R.id.cancel);
+        Button add = findViewById(R.id.save);
 
+        //abrir BBDD
+        db.open();
+
+        //añadir cliente BBDD
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                EditText nombre = findViewById(R.id.editTextTextPersonName);
+                EditText phone = findViewById(R.id.editTextPhone);
+
+                db.agregarClientes(1, nombre.getText().toString(), phone.getText().toString());
+
+                Toast.makeText(AddClient.this, "Client added", Toast.LENGTH_LONG).show();
+
+                cancelar(view);
+            }
+        });
+
+        //volver
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

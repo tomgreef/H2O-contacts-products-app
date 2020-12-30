@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">Gestión</string>
+    <string name="app_name" translatable="false">H2O Managment</string>
     <string name="tab_text_1">Clients</string>
     <string name="tab_text_2">Products</string>
     <string name="tab_text_3">Orders</string>
-    <string name="fab_content_desc">Adding new item</string>
     <string name="full_name">Full name</string>
     <string name="telefone">Telephone</string>
     <string name="save">Save</string>
@@ -11,4 +10,10 @@
     <string name="cancelClient">Cancel new client</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="language_selected">en</string>
+    <string name="language">English</string>
+    <string-array name="language_option">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
 </resources>
