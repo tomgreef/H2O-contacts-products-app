@@ -37,9 +37,9 @@ public class AdminDB_Manager {
         db.insert("productos", null, cv);
     }
 
-    public void agregarClientes(Integer id, String nombre, String phone){
+    public void agregarClientes(String nombre, String phone){
         ContentValues cv = new ContentValues();
-        cv.put("id", id);
+        //cv.put("id", id);
         cv.put("nombre", nombre);
         cv.put("phone", phone);
         db.insert("clientes", null, cv);
@@ -66,6 +66,7 @@ public class AdminDB_Manager {
 
     public Cursor listaPedidos(){
         Cursor c = db.query("pedidos", null, null, null, null, null, null);
+
         return c;
     }
 
@@ -82,3 +83,4 @@ public class AdminDB_Manager {
         return db.delete("pedidos", "id" + "=" + id, null);
     }
 }
+

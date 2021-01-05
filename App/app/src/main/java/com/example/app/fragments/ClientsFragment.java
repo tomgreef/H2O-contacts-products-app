@@ -2,6 +2,7 @@ package com.example.app.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.app.AddClient;
+import com.example.app.AdminDB_Manager;
 import com.example.app.MainActivity;
 import com.example.app.R;
 import com.example.app.UpdateClient;
@@ -34,8 +36,11 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
+    private AdminDB_Manager db = new AdminDB_Manager(getActivity());
+
     // Vars
     private List<DummyContent.DummyItem> mValues = new ArrayList<>();
+    private List<DummyContent.DummyItem> list = new ArrayList<>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -68,6 +73,15 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_client_list, container, false);
 
+        /*db.open();
+        Cursor c = db.listaClientes();
+        DummyContent.DummyItem tuple;
+
+        while(c.moveToNext()){
+            tuple = new DummyContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
+            list.add(tuple);
+        }*/
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -86,7 +100,7 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
     public void onClientClick(int position) {
         Toast.makeText(getActivity(), "Editing Client", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(), UpdateClient.class);
-        // intent.putExtra("Some info", "something else");
+        intent.putExtra("Some info", position);
         startActivity(intent);
     }
 }

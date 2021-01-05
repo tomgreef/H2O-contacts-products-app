@@ -22,6 +22,7 @@ import java.util.List;
  */
 public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClientsRecyclerViewAdapter.ViewHolder> {
 
+
     private final List<DummyItem> mValues;
     private OnClientListenser mOnClientListener;
 

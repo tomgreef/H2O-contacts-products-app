@@ -31,10 +31,9 @@ public class AddClient extends AppCompatActivity {
                 EditText nombre = findViewById(R.id.editTextTextPersonName);
                 EditText phone = findViewById(R.id.editTextPhone);
 
-                db.agregarClientes(1, nombre.getText().toString(), phone.getText().toString());
+                db.agregarClientes(nombre.getText().toString(), phone.getText().toString());
 
                 Toast.makeText(AddClient.this, "Client added", Toast.LENGTH_LONG).show();
-
                 cancelar(view);
             }
         });

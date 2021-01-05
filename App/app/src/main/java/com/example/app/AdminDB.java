@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 public class AdminDB extends SQLiteOpenHelper {
 
     private static final int VERSION_BD = 1;
-    private static final String BD = "h2o.db";
+    private static final String BD = "h5o.db";
 
     //CREACIÓN TABLAS
     private static final String TABLA_PRODUCTOS = "productos";
@@ -21,18 +21,18 @@ public class AdminDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query_1 = "CREATE TABLE " + TABLA_PRODUCTOS + "(" + "id" + " INTEGER PRIMARY KEY, " + "nombre" +
-                "TEXT, " + "precio" + " INTEGER);";
+        String query_1 = "CREATE TABLE " + TABLA_PRODUCTOS + "(" + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, " + "precio" +
+                " INTEGER, " + "nombre" + " TEXT NOT NULL);";
 
         db.execSQL(query_1);
 
-        String query_2 = "CREATE TABLE " + TABLA_CLIENTES + "(" + "id" + " INTEGER PRIMARY KEY, " + "nombre" +
-                "TEXT, " + "phone" + " TEXT);";
+        String query_2 = "CREATE TABLE " + TABLA_CLIENTES + "(" + "id" + " INTEGER PRIMARY KEY AUTOINCREMENT, " + "nombre" +
+                " TEXT, " + "phone" + " TEXT NOT NULL);";
 
         db.execSQL(query_2);
 
         String query_3 = "CREATE TABLE " + TABLA_PEDIDOS + "(" + "id" + " INTEGER PRIMARY KEY, " + "fecha" +
-                "DATE);";
+                " DATE);";
 
         db.execSQL(query_3);
     }

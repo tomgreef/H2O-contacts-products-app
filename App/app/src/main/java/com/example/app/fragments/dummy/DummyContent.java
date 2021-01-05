@@ -23,12 +23,13 @@ public class DummyContent {
      */
     public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
 
-    private static final int COUNT = 25;
+    private static final int COUNT = 3;
 
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+            //addItem(createDummyItem(i));
+            addItem(new DummyItem(""+ i, "juan", "51515151"));
         }
     }
 
