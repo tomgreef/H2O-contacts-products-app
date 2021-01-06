@@ -8,21 +8,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.app.R;
-import com.example.app.fragments.Clases.ClientContent.DummyItem;
+import com.example.app.fragments.Clases.ClientContent.Client;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
+ * {@link RecyclerView.Adapter} that can display a {@link Client}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClientsRecyclerViewAdapter.ViewHolder> {
 
 
-    private final List<DummyItem> mValues;
+    private final List<Client> mValues;
     private OnClientListenser mOnClientListener;
 
-    public MyClientsRecyclerViewAdapter(List<DummyItem> items, OnClientListenser onClientListenser) {
+    public MyClientsRecyclerViewAdapter(List<Client> items, OnClientListenser onClientListenser) {
         mValues = items;
         this.mOnClientListener = onClientListenser;
     }
@@ -40,7 +40,7 @@ public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClients
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(mValues.get(position).name);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClients
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Client mItem;
 
         OnClientListenser onClientListener;
 

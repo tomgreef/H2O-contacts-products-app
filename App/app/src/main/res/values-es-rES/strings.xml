@@ -13,4 +13,11 @@
     <string name="delete">Eliminar</string>
     <string name="language_selected">es</string>
     <string name="language">Español</string>
+    <string name="removeMessage">¿Estás seguro de que quieres eliminar este cliente de forma permanente?</string>
+    <string name="warning">Aviso</string>
+    <string name="error">Error</string>
+    <string name="client_updated">Cliente Actualizado</string>
+    <string name="language_select">"Language selected: "</string>
+    <string name="client_added">Cliente Agregado</string>
+    <string name="client_deleted">Cliente Eliminado</string>
 </resources>

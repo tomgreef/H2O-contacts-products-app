@@ -75,12 +75,21 @@ public class AdminDB_Manager {
         return db.delete("productos", "id" + "=" + id, null);
     }
 
-    public int borrarClientes(Integer id){
+    public int borrarClientes(String id){
         return db.delete("clientes", "id" + "=" + id, null);
     }
 
     public int borrarPedidos(Integer id){
         return db.delete("pedidos", "id" + "=" + id, null);
+    }
+
+    //Actualizar DB
+    public int editarClientes(String id, String name, String phone){
+        ContentValues content = new ContentValues();
+        content.put("id", id);
+        content.put("nombre", name);
+        content.put("phone", phone);
+        return db.update("clientes", content, "id = ?", new String[]{id} );
     }
 }
 

@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Adding Client", Toast.LENGTH_LONG).show();
                 addClient(view);
             }
         });
@@ -76,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if(refresh && set != i) {
                     recreate();
-                    Toast.makeText(adapterView.getContext(),
-                            "Language selected: " + adapterView.getItemAtPosition(i).toString(),
-                            Toast.LENGTH_LONG).show();
                     refresh = false;
                     set = i;
+                    Toast.makeText(adapterView.getContext(),
+                            getString(R.string.language_select) + " " + adapterView.getItemAtPosition(i).toString(),
+                            Toast.LENGTH_LONG).show();
                 }
 
                 switch (i) {

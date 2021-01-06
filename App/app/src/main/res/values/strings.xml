@@ -12,8 +12,15 @@
     <string name="delete">Delete</string>
     <string name="language_selected">en</string>
     <string name="language">English</string>
+    <string name="removeMessage">Are you sure you want to permanently remove this client?</string>
+    <string name="warning">Warning</string>
+    <string name="client_updated">Client Updated</string>
+    <string name="error">Error</string>
+    <string name="client_added">Client Added</string>
+    <string name="client_deleted">Client Removed</string>
     <string-array name="language_option">
         <item>English</item>
         <item>Spanish</item>
     </string-array>
+    <string name="language_select">"Lenguaje seleccionado: "</string>
 </resources>

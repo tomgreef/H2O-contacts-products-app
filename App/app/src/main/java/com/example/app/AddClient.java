@@ -35,7 +35,7 @@ public class AddClient extends AppCompatActivity {
 
                 db.agregarClientes(nombre.getText().toString(), phone.getText().toString());
 
-                Toast.makeText(AddClient.this, "Client added", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddClient.this, R.string.client_added, Toast.LENGTH_LONG).show();
                 cancelar(view);
 
                 ClientContent.ITEM_MAP.clear();

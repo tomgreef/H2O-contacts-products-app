@@ -16,12 +16,12 @@ public class ClientContent {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static final List<Client> ITEMS = new ArrayList<Client>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public static final Map<String, Client> ITEM_MAP = new HashMap<String, Client>();
 
     private static final int COUNT = 5;
 
@@ -33,13 +33,13 @@ public class ClientContent {
         }
     }
 
-    public static void addItem(DummyItem item) {
+    public static void addItem(Client item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    private static Client createDummyItem(int position) {
+        return new Client(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -54,20 +54,20 @@ public class ClientContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class DummyItem {
+    public static class Client {
         public final String id;
-        public final String content;
-        public final String details;
+        public final String name;
+        public final String phone;
 
-        public DummyItem(String id, String content, String details) {
+        public Client(String id, String name, String phone) {
             this.id = id;
-            this.content = content;
-            this.details = details;
+            this.name = name;
+            this.phone = phone;
         }
 
         @Override
         public String toString() {
-            return content;
+            return name;
         }
     }
 }

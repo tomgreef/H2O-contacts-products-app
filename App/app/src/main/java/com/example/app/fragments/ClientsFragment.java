@@ -37,8 +37,8 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
     private Cursor c;
 
     // Vars
-    private List<ClientContent.DummyItem> mValues = new ArrayList<>();
-    private List<ClientContent.DummyItem> list = new ArrayList<>();
+    private List<ClientContent.Client> mValues = new ArrayList<>();
+    private List<ClientContent.Client> list = new ArrayList<>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -75,11 +75,11 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
             db = new AdminDB_Manager(getActivity());
             db.open();
             c = db.listaClientes();
-            ClientContent.DummyItem tuple;
+            ClientContent.Client tuple;
 
             int i = 1;
             while(c.moveToNext() && i <= 20){
-                tuple = new ClientContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
+                tuple = new ClientContent.Client(c.getString(0), c.getString(1), c.getString(2));
                 ClientContent.addItem(tuple);
                 i++;
             }
@@ -101,9 +101,8 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
 
     @Override
     public void onClientClick(int position) {
-        Toast.makeText(getActivity(), "Editing Client", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity(), UpdateClient.class);
-        intent.putExtra("Some info", position);
+        intent.putExtra("index", position);
         startActivity(intent);
     }
 }
