@@ -9,5 +9,6 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
+    app:flow_verticalAlign="center"
     tools:context=".fragments.ProductsFragment"
     tools:listitem="@layout/fragment_products" />

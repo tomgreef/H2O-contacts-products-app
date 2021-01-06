@@ -41,21 +41,29 @@ public class UpdateClient extends AppCompatActivity {
         //abrir BBDD
         db.open();
 
-        //añadir cliente BBDD
+        //actualizar cliente BBDD
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (db.editarClientes(client.id, nombre.getText().toString(), phone.getText().toString()) == 1) {
-                    Toast.makeText(UpdateClient.this, R.string.client_updated, Toast.LENGTH_LONG).show();
-                    ClientContent.ITEM_MAP.clear();
-                    ClientContent.ITEMS.clear();
+                String n = nombre.getText().toString();
+                String p = phone.getText().toString();
+
+                if (client.name.equals(n) && client.phone.equals(p)) {
+                    Toast.makeText(UpdateClient.this, R.string.no_changes, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(UpdateClient.this, R.string.error, Toast.LENGTH_LONG).show();
+                    if (db.editarClientes(client.id, n, p) == 1) {
+                        Toast.makeText(UpdateClient.this, R.string.client_updated, Toast.LENGTH_LONG).show();
+                        ClientContent.ITEM_MAP.clear();
+                        ClientContent.ITEMS.clear();
+                    } else {
+                        Toast.makeText(UpdateClient.this, R.string.error, Toast.LENGTH_LONG).show();
+                    }
+                    cancelar(view);
                 }
-                cancelar(view);
             }
         });
 
+        //borrar cliente BBDD
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

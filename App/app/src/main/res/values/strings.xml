@@ -18,9 +18,12 @@
     <string name="error">Error</string>
     <string name="client_added">Client Added</string>
     <string name="client_deleted">Client Removed</string>
+    <string name="no_changes">Error: No changes detected</string>
+    <string name="no_name">Error: Name is empty</string>
+    <string name="no_phone">Error: Phone is empty</string>
     <string-array name="language_option">
         <item>English</item>
         <item>Spanish</item>
     </string-array>
-    <string name="language_select">"Lenguaje seleccionado: "</string>
+    <string name="language_select">"Language selected: "</string>
 </resources>

@@ -29,17 +29,29 @@ public class AddClient extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 EditText nombre = findViewById(R.id.editTextTextPersonName);
                 EditText phone = findViewById(R.id.editTextPhone);
 
-                db.agregarClientes(nombre.getText().toString(), phone.getText().toString());
+                String n = nombre.getText().toString();
+                String p = phone.getText().toString();
 
-                Toast.makeText(AddClient.this, R.string.client_added, Toast.LENGTH_LONG).show();
-                cancelar(view);
+                if(n.isEmpty() || p.isEmpty()) {
+                    if (!n.isEmpty()){
+                        Toast.makeText(AddClient.this, R.string.no_phone, Toast.LENGTH_LONG).show();
+                    } else if (!p.isEmpty()){
+                        Toast.makeText(AddClient.this, R.string.no_name, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(AddClient.this, R.string.no_changes, Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    db.agregarClientes(n, p);
 
-                ClientContent.ITEM_MAP.clear();
-                ClientContent.ITEMS.clear();
+                    Toast.makeText(AddClient.this, R.string.client_added, Toast.LENGTH_LONG).show();
+                    cancelar(view);
+
+                    ClientContent.ITEM_MAP.clear();
+                    ClientContent.ITEMS.clear();
+                }
             }
         });
 
@@ -47,7 +59,6 @@ public class AddClient extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(AddClient.this, "Cancel New Client", Toast.LENGTH_LONG).show();
                 cancelar(view);
             }
         });

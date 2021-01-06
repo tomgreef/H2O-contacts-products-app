@@ -66,11 +66,11 @@ public class ProductsFragment extends Fragment {
             db = new AdminDB_Manager(getActivity());
             db.open();
             c = db.listarProductos();
-            ProductContent.DummyItem tuple;
+            ProductContent.ProductItem tuple;
 
             int i = 1;
             while(c.moveToNext() && i <= 20){
-                tuple = new ProductContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
+                tuple = new ProductContent.ProductItem(c.getString(0), c.getString(1), c.getString(2));
                 ProductContent.addItem(tuple);
                 i++;
             }

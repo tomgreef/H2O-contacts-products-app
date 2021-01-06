@@ -39,7 +39,7 @@ public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClients
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
+        //holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).name);
     }
 
@@ -59,8 +59,8 @@ public class MyClientsRecyclerViewAdapter extends RecyclerView.Adapter<MyClients
         public ViewHolder(View view, OnClientListenser onClientListener) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.producto_nombre);
+            mContentView = (TextView) view.findViewById(R.id.producto_precio);
 
             this.onClientListener = onClientListener;
             itemView.setOnClickListener(this);

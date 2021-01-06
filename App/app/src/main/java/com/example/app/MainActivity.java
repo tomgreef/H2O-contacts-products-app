@@ -74,12 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 int set = language;
 
                 if(refresh && set != i) {
-                    recreate();
-                    refresh = false;
-                    set = i;
+                    //TODO
+                    // El toast no coje el string perteneciente al lenguaje selecionado
                     Toast.makeText(adapterView.getContext(),
                             getString(R.string.language_select) + " " + adapterView.getItemAtPosition(i).toString(),
                             Toast.LENGTH_LONG).show();
+                    recreate();
+                    refresh = false;
+                    set = i;
                 }
 
                 switch (i) {

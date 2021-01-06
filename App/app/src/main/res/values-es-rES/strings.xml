@@ -17,7 +17,10 @@
     <string name="warning">Aviso</string>
     <string name="error">Error</string>
     <string name="client_updated">Cliente Actualizado</string>
-    <string name="language_select">"Language selected: "</string>
+    <string name="language_select">"Lenguaje seleccionado: "</string>
     <string name="client_added">Cliente Agregado</string>
     <string name="client_deleted">Cliente Eliminado</string>
+    <string name="no_changes">Error: No se detectaron cambios</string>
+    <string name="no_name">Error: Nombre está vacío</string>
+    <string name="no_phone">Error: Telefono está vacío</string>
 </resources>

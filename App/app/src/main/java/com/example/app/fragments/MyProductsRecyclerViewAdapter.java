@@ -8,19 +8,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.app.R;
-import com.example.app.fragments.Clases.ProductContent.DummyItem;
+import com.example.app.fragments.Clases.ProductContent.ProductItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
+ * {@link RecyclerView.Adapter} that can display a {@link ProductItem}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyProductsRecyclerViewAdapter extends RecyclerView.Adapter<MyProductsRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<ProductItem> mValues;
 
-    public MyProductsRecyclerViewAdapter(List<DummyItem> items) {
+    public MyProductsRecyclerViewAdapter(List<ProductItem> items) {
         mValues = items;
     }
 
@@ -34,8 +34,8 @@ public class MyProductsRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).nombre);
+        holder.mContentView.setText(mValues.get(position).precio);
     }
 
     @Override
@@ -47,13 +47,13 @@ public class MyProductsRecyclerViewAdapter extends RecyclerView.Adapter<MyProduc
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public ProductItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.producto_nombre);
+            mContentView = (TextView) view.findViewById(R.id.producto_precio);
         }
 
         @Override
