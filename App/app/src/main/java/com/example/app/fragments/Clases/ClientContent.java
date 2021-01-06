@@ -23,12 +23,12 @@ public class ClientContent {
      */
     public static final Map<String, Client> ITEM_MAP = new HashMap<String, Client>();
 
-    private static final int COUNT = 5;
+    private static final int COUNT = 50;
 
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            //addItem(createDummyItem(i));
+            addItem(createDummyItem(i));
             //addItem(new DummyItem(""+ i, "juan", "51515151"));
         }
     }

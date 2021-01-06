@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +31,18 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final int NUMBER_ROWS = 20;
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
     private AdminDB_Manager db;
     private Cursor c;
+
+    // Adapter
+    private int previousTotal = 0;
+    private boolean loading = true;
+    private int visibleThreshold = 5;
+    int firstVisibleItem, visibleItemCount, totalItemCount;
 
     // Vars
     private List<ClientContent.Client> mValues = new ArrayList<>();
@@ -78,22 +86,64 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
             ClientContent.Client tuple;
 
             int i = 1;
-            while(c.moveToNext() && i <= 20){
+            while(c.moveToNext() && i <= NUMBER_ROWS){
                 tuple = new ClientContent.Client(c.getString(0), c.getString(1), c.getString(2));
                 ClientContent.addItem(tuple);
                 i++;
             }
+
+
+            if(i == NUMBER_ROWS){
+
+            }
+
         }
 
         // Set the adapter
+
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
+            LinearLayoutManager mLayoutManager;
+
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                mLayoutManager = new LinearLayoutManager(context);
+                recyclerView.setLayoutManager(mLayoutManager);
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                mLayoutManager = new GridLayoutManager(context, mColumnCount);
+                recyclerView.setLayoutManager(mLayoutManager);
             }
+
+            // On Scroll
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+
+                    visibleItemCount = recyclerView.getChildCount();
+                    totalItemCount = mLayoutManager.getItemCount();
+                    firstVisibleItem = mLayoutManager.findFirstVisibleItemPosition();
+
+                    if (loading) {
+                        if (totalItemCount > previousTotal) {
+                            loading = false;
+                            previousTotal = totalItemCount;
+                        }
+                    }
+                    if (!loading && (totalItemCount - visibleItemCount)
+                            <= (firstVisibleItem + visibleThreshold)) {
+                        // End has been reached
+
+                        Log.i("Yaeye!", "end called");
+
+                        // Do something
+
+                        loading = true;
+                    }
+                }
+            });
+
             recyclerView.setAdapter(new MyClientsRecyclerViewAdapter(ClientContent.ITEMS, this));
         }
         return view;
