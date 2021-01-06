@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.app.fragments.Clases.ClientContent;
+
 public class AddClient extends AppCompatActivity {
 
     private AdminDB_Manager db = new AdminDB_Manager(this);
@@ -35,6 +37,9 @@ public class AddClient extends AppCompatActivity {
 
                 Toast.makeText(AddClient.this, "Client added", Toast.LENGTH_LONG).show();
                 cancelar(view);
+
+                ClientContent.ITEM_MAP.clear();
+                ClientContent.ITEMS.clear();
             }
         });
 

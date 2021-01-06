@@ -1,6 +1,7 @@
 package com.example.app.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.app.AdminDB_Manager;
 import com.example.app.R;
-import com.example.app.fragments.dummy.DummyContent;
+import com.example.app.fragments.Clases.ProductContent;
 
 /**
  * A fragment representing a list of Items.
@@ -24,6 +26,10 @@ public class ProductsFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 2;
+
+    //Database
+    private AdminDB_Manager db;
+    private Cursor c;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -56,6 +62,20 @@ public class ProductsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_product_list, container, false);
 
+        if(ProductContent.ITEM_MAP.isEmpty()){
+            db = new AdminDB_Manager(getActivity());
+            db.open();
+            c = db.listarProductos();
+            ProductContent.DummyItem tuple;
+
+            int i = 1;
+            while(c.moveToNext() && i <= 20){
+                tuple = new ProductContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
+                ProductContent.addItem(tuple);
+                i++;
+            }
+        }
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -65,7 +85,7 @@ public class ProductsFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyProductsRecyclerViewAdapter(DummyContent.ITEMS));
+            recyclerView.setAdapter(new MyProductsRecyclerViewAdapter(ProductContent.ITEMS));
         }
         return view;
     }

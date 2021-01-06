@@ -24,6 +24,7 @@ import com.example.app.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AdminDB_Manager db = new AdminDB_Manager(this);
     Spinner mLanguage;
     TextView mTextView;
     ArrayAdapter<String> mAdapter;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        db.open();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

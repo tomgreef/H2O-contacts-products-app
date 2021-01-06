@@ -1,6 +1,7 @@
 package com.example.app.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.app.AdminDB_Manager;
 import com.example.app.R;
-import com.example.app.fragments.dummy.DummyContent;
+import com.example.app.fragments.Clases.OrderContent;
+import com.example.app.fragments.Clases.ProductContent;
 
 /**
  * A fragment representing a list of Items.
@@ -24,6 +27,10 @@ public class OrdersFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+
+    //BD
+    private AdminDB_Manager db;
+    private Cursor c;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -56,6 +63,20 @@ public class OrdersFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order_list, container, false);
 
+        if(ProductContent.ITEM_MAP.isEmpty()){
+            db = new AdminDB_Manager(getActivity());
+            db.open();
+            c = db.listaPedidos();
+            OrderContent.DummyItem tuple;
+
+            int i = 1;
+            while(c.moveToNext() && i <= 20){
+                tuple = new OrderContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
+                OrderContent.addItem(tuple);
+                i++;
+            }
+        }
+
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -65,7 +86,7 @@ public class OrdersFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyOrdersRecyclerViewAdapter(DummyContent.ITEMS));
+            recyclerView.setAdapter(new MyOrdersRecyclerViewAdapter(OrderContent.ITEMS));
         }
         return view;
     }

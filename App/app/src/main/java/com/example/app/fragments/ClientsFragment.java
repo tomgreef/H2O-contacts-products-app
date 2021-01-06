@@ -13,15 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.app.AddClient;
 import com.example.app.AdminDB_Manager;
-import com.example.app.MainActivity;
 import com.example.app.R;
 import com.example.app.UpdateClient;
-import com.example.app.fragments.dummy.DummyContent;
+import com.example.app.fragments.Clases.ClientContent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +33,12 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
     // TODO: Customize parameters
     private int mColumnCount = 1;
 
-    private AdminDB_Manager db = new AdminDB_Manager(getActivity());
+    private AdminDB_Manager db;
+    private Cursor c;
 
     // Vars
-    private List<DummyContent.DummyItem> mValues = new ArrayList<>();
-    private List<DummyContent.DummyItem> list = new ArrayList<>();
+    private List<ClientContent.DummyItem> mValues = new ArrayList<>();
+    private List<ClientContent.DummyItem> list = new ArrayList<>();
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -73,14 +71,19 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_client_list, container, false);
 
-        /*db.open();
-        Cursor c = db.listaClientes();
-        DummyContent.DummyItem tuple;
+        if(ClientContent.ITEM_MAP.isEmpty()){
+            db = new AdminDB_Manager(getActivity());
+            db.open();
+            c = db.listaClientes();
+            ClientContent.DummyItem tuple;
 
-        while(c.moveToNext()){
-            tuple = new DummyContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
-            list.add(tuple);
-        }*/
+            int i = 1;
+            while(c.moveToNext() && i <= 20){
+                tuple = new ClientContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
+                ClientContent.addItem(tuple);
+                i++;
+            }
+        }
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -91,7 +94,7 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyClientsRecyclerViewAdapter(DummyContent.ITEMS, this));
+            recyclerView.setAdapter(new MyClientsRecyclerViewAdapter(ClientContent.ITEMS, this));
         }
         return view;
     }
