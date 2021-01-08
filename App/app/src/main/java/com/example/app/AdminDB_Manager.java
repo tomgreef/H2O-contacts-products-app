@@ -91,5 +91,13 @@ public class AdminDB_Manager {
         content.put("phone", phone);
         return db.update("clientes", content, "id = ?", new String[]{id} );
     }
+
+    //Filtrar DB
+    public Cursor contactoByNombre(String nombre){
+        String[] query = {nombre + "%"};
+        String[] campos = {"id", "nombre", "phone"};
+        Cursor c  = db.query("clientes", campos, "nombre" + " like ?", query, null, null, null);
+        return c;
+    }
 }
 

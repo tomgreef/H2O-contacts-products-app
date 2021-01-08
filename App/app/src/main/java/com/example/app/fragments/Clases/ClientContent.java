@@ -28,7 +28,7 @@ public class ClientContent {
     static {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+            //addItem(createDummyItem(i));
             //addItem(new DummyItem(""+ i, "juan", "51515151"));
         }
     }
