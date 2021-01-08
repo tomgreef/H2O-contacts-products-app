@@ -45,7 +45,7 @@ public class AddClient extends AppCompatActivity {
                     } else if (!p.isEmpty()){
                         Toast.makeText(AddClient.this, R.string.no_name, Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(AddClient.this, R.string.no_data , Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddClient.this, R.string.no_changes , Toast.LENGTH_LONG).show();
                     }
                 } else {
                     SQLiteDatabase bd = db_map.getWritableDatabase();

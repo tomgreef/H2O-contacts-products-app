@@ -96,13 +96,11 @@ public class AdminDB_Manager {
         return db.update("clientes", content, "id = ?", new String[]{id} );
     }
 
-    //FILTRAR en DB
+    //Filtrar DB
     public Cursor contactoByNombre(String nombre){
         String[] query = {nombre + "%"};
-        String[] campos = {"nombre, phone"};
-
+        String[] campos = {"id", "nombre", "phone"};
         Cursor c  = db.query("clientes", campos, "nombre" + " like ?", query, null, null, null);
-
         return c;
     }
 }

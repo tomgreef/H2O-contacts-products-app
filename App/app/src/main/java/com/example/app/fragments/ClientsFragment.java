@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.app.AdminDB_Manager;
@@ -79,6 +81,37 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_client_list, container, false);
 
+        Button search = getActivity().findViewById(R.id.search);
+
+        // Button
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText nombre = getActivity().findViewById(R.id.searchName);
+                String name = nombre.getText().toString();
+
+                db = new AdminDB_Manager(getActivity());
+                db.open();
+                c = db.contactoByNombre(name);
+
+                if(c.getCount() == 0){
+                    Toast.makeText(getActivity(), R.string.no_match, Toast.LENGTH_LONG).show();
+                } else {
+                    ClientContent.Client tuple;
+                    ClientContent.ITEMS.clear();
+                    ClientContent.ITEM_MAP.clear();
+
+                    int i = 1;
+                    while (c.moveToNext() && i <= ClientsFragment.NUMBER_ROWS) {
+                        tuple = new ClientContent.Client(c.getString(0), c.getString(1), c.getString(2));
+                        ClientContent.addItem(tuple);
+                        i++;
+                    }
+                    refreshAdapter(view);
+                }
+            }
+        });
+
         if(ClientContent.ITEM_MAP.isEmpty()){
             db = new AdminDB_Manager(getActivity());
             db.open();
@@ -91,12 +124,6 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
                 ClientContent.addItem(tuple);
                 i++;
             }
-
-
-            if(i == NUMBER_ROWS){
-
-            }
-
         }
 
         // Set the adapter
@@ -154,5 +181,13 @@ public class ClientsFragment extends Fragment implements MyClientsRecyclerViewAd
         Intent intent = new Intent(getActivity(), UpdateClient.class);
         intent.putExtra("index", position);
         startActivity(intent);
+    }
+
+    private void refreshAdapter(View view){
+        getFragmentManager()
+                .beginTransaction()
+                .detach(ClientsFragment.this)
+                .attach(ClientsFragment.this)
+                .commit();
     }
 }
