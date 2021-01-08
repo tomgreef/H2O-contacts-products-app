@@ -3,11 +3,8 @@ package com.example.app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.os.Bundle;
 
-import com.example.app.fragments.Clases.ClientContent;
-import com.example.app.fragments.ClientsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -15,12 +12,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,9 +40,8 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        db.open();
+        db.open(); //Abrir BBDD
 
-        // Button functions
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 Resources resources;
                 int set = language;
 
-                if (refresh && set != i) {
+                if(refresh && set != i) {
                     //TODO
                     // El toast no coje el string perteneciente al lenguaje selecionado
                     Toast.makeText(adapterView.getContext(),
@@ -106,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 refresh = false;

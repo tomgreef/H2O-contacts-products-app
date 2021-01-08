@@ -23,14 +23,12 @@ public class ProductContent {
      */
     public static final Map<String, ProductItem> ITEM_MAP = new HashMap<String, ProductItem>();
 
-    private static final int COUNT = 3;
+    private static final int COUNT = 5;
 
     static {
         // Add some sample items.
-        String[] nombres = new String[]{"Water", "Water Machine", "Cups"};
-        String[] precios = new String[]{"7.15", "100.00", "2.00"};
         for (int i = 1; i <= COUNT; i++) {
-            addItem(new ProductItem("" + i, nombres[i-1], precios[i-1]));
+            addItem(createDummyItem(i));
         }
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">H2O Managment</string>
+    <string name="app_name">H2O Management</string>
     <string name="tab_text_1">Clientes</string>
     <string name="tab_text_2">Productos</string>
     <string name="tab_text_3">Pedidos</string>
@@ -16,14 +16,12 @@
     <string name="removeMessage">¿Estás seguro de que quieres eliminar este cliente de forma permanente?</string>
     <string name="warning">Aviso</string>
     <string name="error">Error</string>
-    <string name="client_updated">Cliente Actualizado</string>
-    <string name="language_select">"Lenguaje seleccionado: "</string>
-    <string name="client_added">Cliente Agregado</string>
-    <string name="client_deleted">Cliente Eliminado</string>
-    <string name="no_changes">Error: No se detectaron cambios</string>
-    <string name="no_name">Error: Nombre está vacío</string>
-    <string name="no_phone">Error: Telefono está vacío</string>
-    <string name="search">Buscar</string>
-    <string name="search_client">Nombre (Cliente Solo)</string>
-    <string name="no_match">ERROR: No Existe</string>
+    <string name="client_updated">Cliente actualizado con exito</string>
+    <string name="language_select">"Idioma seleccionado: "</string>
+    <string name="client_added">Cliente agregado con exito</string>
+    <string name="client_deleted">Cliente eliminado con exito</string>
+    <string name="no_changes">Error: No se han detectado cambios</string>
+    <string name="no_data">Error: No se han introducido datos</string>
+    <string name="no_name">Error: El campo nombre está vacío</string>
+    <string name="no_phone">Error: El campo telefono está vacío</string>
 </resources>

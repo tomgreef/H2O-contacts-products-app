@@ -2,7 +2,9 @@ package com.example.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +15,8 @@ import com.example.app.fragments.Clases.ClientContent;
 
 public class AddClient extends AppCompatActivity {
 
-    private AdminDB_Manager db = new AdminDB_Manager(this);
+    //private AdminDB_Manager db = new AdminDB_Manager(this);
+    private AdminDB db_map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,15 +25,16 @@ public class AddClient extends AppCompatActivity {
         Button cancel = findViewById(R.id.cancel);
         Button add = findViewById(R.id.save);
 
-        //abrir BBDD
-        db.open();
+        //Abrir la BBDD
+        //db.open(); //Ya se ha abierto antes -> se hace uso de la instancia en SingletonMap
+        db_map = (AdminDB) SingletonMap.getInstance().get(AdminDB_Manager.H2O);
 
-        //añadir cliente BBDD
+        //Añadir un nuevo cliente en la BBDD
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText nombre = findViewById(R.id.editTextTextPersonName);
-                EditText phone = findViewById(R.id.editTextPhone);
+                EditText nombre = findViewById(R.id.addFullName);
+                EditText phone = findViewById(R.id.addPhone);
 
                 String n = nombre.getText().toString();
                 String p = phone.getText().toString();
@@ -41,10 +45,18 @@ public class AddClient extends AppCompatActivity {
                     } else if (!p.isEmpty()){
                         Toast.makeText(AddClient.this, R.string.no_name, Toast.LENGTH_LONG).show();
                     } else {
-                        Toast.makeText(AddClient.this, R.string.no_changes, Toast.LENGTH_LONG).show();
+                        Toast.makeText(AddClient.this, R.string.no_data , Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    db.agregarClientes(n, p);
+                    SQLiteDatabase bd = db_map.getWritableDatabase();
+
+                    ContentValues cv = new ContentValues();
+
+                    cv.put("nombre", n);
+                    cv.put("phone", p);
+
+                    bd.insert("clientes", null, cv);
+                    //db.insert("clientes", null, cv); //Comentar para usar SingletonMap
 
                     Toast.makeText(AddClient.this, R.string.client_added, Toast.LENGTH_LONG).show();
                     cancelar(view);
@@ -55,7 +67,7 @@ public class AddClient extends AppCompatActivity {
             }
         });
 
-        //volver
+        //Cancelar actividad actual, volver a la anterior
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

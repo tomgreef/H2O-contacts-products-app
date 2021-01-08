@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">H2O Managment</string>
+    <string name="app_name" translatable="false">H2O Management</string>
     <string name="tab_text_1">Clients</string>
     <string name="tab_text_2">Products</string>
     <string name="tab_text_3">Orders</string>
@@ -19,11 +19,9 @@
     <string name="client_added">Client Added</string>
     <string name="client_deleted">Client Removed</string>
     <string name="no_changes">Error: No changes detected</string>
+    <string name="no_data">Error: No data added</string>
     <string name="no_name">Error: Name is empty</string>
     <string name="no_phone">Error: Phone is empty</string>
-    <string name="search">Search</string>
-    <string name="search_client">Name (Client Only)</string>
-    <string name="no_match">ERROR: No Match</string>
     <string-array name="language_option">
         <item>English</item>
         <item>Spanish</item>

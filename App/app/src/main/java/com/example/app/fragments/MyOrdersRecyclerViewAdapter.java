@@ -8,19 +8,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.app.R;
-import com.example.app.fragments.Clases.OrderContent.OrderItem;
+import com.example.app.fragments.Clases.OrderContent.DummyItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link OrderItem}.
+ * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyOrdersRecyclerViewAdapter extends RecyclerView.Adapter<MyOrdersRecyclerViewAdapter.ViewHolder> {
 
-    private final List<OrderItem> mValues;
+    private final List<DummyItem> mValues;
 
-    public MyOrdersRecyclerViewAdapter(List<OrderItem> items) {
+    public MyOrdersRecyclerViewAdapter(List<DummyItem> items) {
         mValues = items;
     }
 
@@ -35,7 +35,7 @@ public class MyOrdersRecyclerViewAdapter extends RecyclerView.Adapter<MyOrdersRe
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).fecha.toString());
+        holder.mContentView.setText(mValues.get(position).content);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class MyOrdersRecyclerViewAdapter extends RecyclerView.Adapter<MyOrdersRe
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public OrderItem mItem;
+        public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);

@@ -67,11 +67,11 @@ public class OrdersFragment extends Fragment {
             db = new AdminDB_Manager(getActivity());
             db.open();
             c = db.listaPedidos();
-            OrderContent.OrderItem tuple;
+            OrderContent.DummyItem tuple;
 
             int i = 1;
             while(c.moveToNext() && i <= 20){
-                tuple = new OrderContent.OrderItem(c.getString(0), c.getString(1));
+                tuple = new OrderContent.DummyItem(c.getString(0), c.getString(1), c.getString(2));
                 OrderContent.addItem(tuple);
                 i++;
             }

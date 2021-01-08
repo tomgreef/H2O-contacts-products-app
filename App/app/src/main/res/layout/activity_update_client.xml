@@ -7,7 +7,7 @@
     tools:context=".UpdateClient">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/showName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/showPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -26,10 +26,10 @@
         android:layout_marginTop="52dp"
         android:text="@string/telefone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/showName" />
 
     <EditText
-        android:id="@+id/ClientName"
+        android:id="@+id/editFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/ClientPhone"
+        android:id="@+id/editPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -50,7 +50,7 @@
         android:ems="10"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ClientName" />
+        app:layout_constraintTop_toBottomOf="@+id/editFullName" />
 
     <Button
         android:id="@+id/cancel"

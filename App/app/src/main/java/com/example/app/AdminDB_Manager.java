@@ -11,6 +11,8 @@ public class AdminDB_Manager {
     private Context context;
     private SQLiteDatabase db;
 
+    static String H2O = "H2O"; //Variable estatica para el SingletonMap
+
     public AdminDB_Manager(Context c){
         context = c;
     }
@@ -19,7 +21,7 @@ public class AdminDB_Manager {
         h2odb = new AdminDB(context, "h2o", null, 1);
         db = h2odb.getWritableDatabase();
 
-        //SingletonMap.getInstance().put("H2O", h2odb);
+       SingletonMap.getInstance().put(H2O, h2odb); //Se guarda la instancia a compartir
 
         return this;
     }
@@ -28,32 +30,34 @@ public class AdminDB_Manager {
         h2odb.close();
     }
 
-    //INSERTAR EN DB
-    public void agregarProductos(Integer id, String nombre, Integer precio){
+    //CRUD - AGREGAR (CREATE)
+    public void agregarProductos(String nombre, Integer precio){
         ContentValues cv = new ContentValues();
-        cv.put("id", id);
+
         cv.put("nombre", nombre);
         cv.put("precio", precio);
+
         db.insert("productos", null, cv);
     }
 
     public void agregarClientes(String nombre, String phone){
         ContentValues cv = new ContentValues();
-        //cv.put("id", id);
+
         cv.put("nombre", nombre);
         cv.put("phone", phone);
+
         db.insert("clientes", null, cv);
     }
 
-    public void agregarPedidos(Integer id, String nombre, String fecha){
+    public void agregarPedidos(String fecha){
         ContentValues cv = new ContentValues();
-        cv.put("id", id);
-        cv.put("nombre", nombre);
+        //cv.put("id", id);
         cv.put("fecha", fecha);
+
         db.insert("pedidos", null, cv);
     }
 
-    //CONSULTAR EN DB
+    //CRUD - LISTAR (READ)
     public Cursor listarProductos(){
         Cursor c = db.query("productos", null, null, null, null, null, null);
         return c;
@@ -70,7 +74,7 @@ public class AdminDB_Manager {
         return c;
     }
 
-    //BORRAR DE DB
+    //CRUD - BORRAR (DELETE)
     public int borrarProductos(Integer id){
         return db.delete("productos", "id" + "=" + id, null);
     }
@@ -83,7 +87,7 @@ public class AdminDB_Manager {
         return db.delete("pedidos", "id" + "=" + id, null);
     }
 
-    //Actualizar DB
+    //CRUD - EDITAR (UPDATE)
     public int editarClientes(String id, String name, String phone){
         ContentValues content = new ContentValues();
         content.put("id", id);
@@ -92,11 +96,13 @@ public class AdminDB_Manager {
         return db.update("clientes", content, "id = ?", new String[]{id} );
     }
 
-    //Filtrar DB
+    //FILTRAR en DB
     public Cursor contactoByNombre(String nombre){
         String[] query = {nombre + "%"};
-        String[] campos = {"id", "nombre", "phone"};
+        String[] campos = {"nombre, phone"};
+
         Cursor c  = db.query("clientes", campos, "nombre" + " like ?", query, null, null, null);
+
         return c;
     }
 }

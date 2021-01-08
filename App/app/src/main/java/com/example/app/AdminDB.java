@@ -1,4 +1,5 @@
 package com.example.app;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -32,7 +33,7 @@ public class AdminDB extends SQLiteOpenHelper {
         db.execSQL(query_2);
 
         String query_3 = "CREATE TABLE " + TABLA_PEDIDOS + "(" + "id" + " INTEGER PRIMARY KEY, " + "fecha" +
-                " DATE);";
+                " TEXT);";
 
         db.execSQL(query_3);
     }
